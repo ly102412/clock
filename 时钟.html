@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.list{
+				list-style: none;
+			}
+			.wrap{
+				position: relative;
+				width: 390px;
+				height: 390px;
+				border: 5px solid #000000;
+				margin: 100px auto;
+				border-radius:50% ;
+				background: #ececec;
+			}
+			.hour{
+				position: absolute;
+				top: 95px;
+				left: 191px;
+				height: 100px;
+				width: 8px;
+				background: red;
+				border-radius: 4px 4px 0 0;
+				transform-origin: 4px 100px;
+			}
+			.min{
+				position: absolute;
+				top: 75px;
+				left: 192px;
+				height: 120px;
+				width: 6px;
+				background: green;
+				border-radius:3px 3px 0 0 ;
+				transform-origin: 3px 120px;
+			}
+			.sec{
+				position: absolute;
+				top: 55px;
+				left:193px;
+				height: 140px;
+				width: 4px;
+				background: #000;
+				border-radius: 2px 2px 0 0;
+				transform-origin:2px 140px ;
+			}
+			.sircle{
+				position: absolute;
+				top: 185px;
+				left:185px;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				background:powderblue ;
+			}
+			.list li{
+				position: absolute;
+				left: 194px;
+				width: 2px;
+				height: 8px;
+				background:#000 ;
+				transform-origin: 1px 195px;
+			}
+			.list li:nth-child(5n+1){
+				left: 193px;
+				width: 4px;
+				height: 15px;
+				background: #000000;
+				transform-origin: 2px 195px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<ul class="list">
+				
+			</ul>
+			<div class="hour"></div>
+			<div class="min"></div>
+			<div class="sec"></div>
+			<div class="sircle"></div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var olist = document.getElementsByClassName('list')[0];
+		var num = 60;
+		for(var i=0;i<num;i++){
+			var oli = document.createElement('li');
+			oli.style.transform = 'rotate('+ 6*i +'deg)'
+			olist.appendChild(oli);
+		}
+		var ohour = document.getElementsByClassName('hour')[0];
+		var omin = document.getElementsByClassName('min')[0];
+		var osec = document.getElementsByClassName('sec')[0];
+		setInterval(function(){
+			var date = new Date();
+			var sec = date.getSeconds();
+			var min = date.getMinutes();
+			min = min + sec/60;
+			var hour = date.getHours();
+			hour = hour + min/60;
+			ohour.style.transform = 'rotate('+ hour*30 +'deg)';
+			omin.style.transform = 'rotate('+ min*6 +'deg)';
+			osec.style.transform = 'rotate('+ sec*6 +'deg)';
+		},1000)
+	</script>
+</html>
